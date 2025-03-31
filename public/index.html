@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic Tarot Reading</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mystical-particles"></div>
+    <div class="floating-symbols">
+        <span>♈</span>
+        <span>♉</span>
+        <span>♊</span>
+        <span>♋</span>
+        <span>♌</span>
+        <span>♍</span>
+        <span>♎</span>
+        <span>♏</span>
+        <span>♐</span>
+        <span>♑</span>
+        <span>♒</span>
+        <span>♓</span>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="crystal-icon">✧</span>
+                Mystic Tarot
+                <span class="crystal-icon">✧</span>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#readings">Reading</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#appointment">Book Session</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="mystical-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="animate-text">Journey Into The Mystical Realm</h1>
+                    <p class="animate-text-delay">Discover Your Path Through Ancient Wisdom</p>
+                    <div class="floating-cards">
+                        <div class="tarot-card">🎴</div>
+                        <div class="tarot-card">🎴</div>
+                        <div class="tarot-card">🎴</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="mystical-quote">
+                        <p>"The cards tell a story, but your spirit writes the ending"</p>
+                    </div>
+                    <div class="about-grid">
+                        <div class="about-card fade-in">
+                            <span class="crystal-icon">✧</span>
+                            <h3>Ancient Wisdom</h3>
+                            <p>Drawing from centuries of mystical knowledge to guide your journey</p>
+                        </div>
+                        <div class="about-card fade-in">
+                            <span class="crystal-icon">✧</span>
+                            <h3>Spiritual Guidance</h3>
+                            <p>Connect with your higher self through divine interpretation</p>
+                        </div>
+                        <div class="about-card fade-in">
+                            <span class="crystal-icon">✧</span>
+                            <h3>Personal Growth</h3>
+                            <p>Unlock your potential and discover your true path</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="readings" class="readings-section">
+            <div class="mystical-overlay"></div>
+            <div class="container">
+                <h2 class="section-title glow-text">Mystical Readings</h2>
+                <div class="reading-cards">
+                    <div class="reading-card fade-in">
+                        <div class="card-crystal">✧</div>
+                        <h3>Past Life Reading</h3>
+                        <p>Uncover the mysteries of your soul's journey through time</p>
+                    </div>
+                    <div class="reading-card fade-in">
+                        <div class="card-crystal">✧</div>
+                        <h3>Love & Relationships</h3>
+                        <p>Navigate the intricate paths of heart and soul connections</p>
+                    </div>
+                    <div class="reading-card fade-in">
+                        <div class="card-crystal">✧</div>
+                        <h3>Career Guidance</h3>
+                        <p>Illuminate your professional path with cosmic wisdom</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="three-card-reading" class="cards-section">
+            <div class="section-content">
+                <h2>Three Card Reading</h2>
+                <div class="reading-description">
+                    <p>The three-card reading is one of the most popular and insightful tarot spreads. Each card position represents a different aspect of your journey:</p>
+                    <ul>
+                        <li><strong>Past:</strong> Reflects past influences and experiences that have shaped your current situation</li>
+                        <li><strong>Present:</strong> Represents your current energy and circumstances</li>
+                        <li><strong>Future:</strong> Offers guidance and potential outcomes based on your current path</li>
+                    </ul>
+                    <p>Click each card to reveal its meaning. When all three cards are revealed, you'll receive a comprehensive reading.</p>
+                </div>
+                <div class="card-deck">
+                    <div class="card-position">
+                        <p class="position-label">Past</p>
+                        <div class="card" data-card="fool" onclick="flipCard(this)">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <div class="card-design">
+                                        <div class="card-symbol"></div>
+                                        <div class="card-pattern"></div>
+                                        <p>Past Influences</p>
+                                        <div class="card-symbol"></div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg" alt="The Fool">
+                                    <div class="card-meaning">
+                                        <h3>The Fool</h3>
+                                        <p class="keywords">New beginnings • Spontaneity • Faith</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-position">
+                        <p class="position-label">Present</p>
+                        <div class="card" data-card="magician" onclick="flipCard(this)">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <div class="card-design">
+                                        <div class="card-symbol"></div>
+                                        <div class="card-pattern"></div>
+                                        <p>Current Energy</p>
+                                        <div class="card-symbol"></div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg" alt="The Magician">
+                                    <div class="card-meaning">
+                                        <h3>The Magician</h3>
+                                        <p class="keywords">Manifestation • Power • Action</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-position">
+                        <p class="position-label">Future</p>
+                        <div class="card" data-card="priestess" onclick="flipCard(this)">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <div class="card-design">
+                                        <div class="card-symbol"></div>
+                                        <div class="card-pattern"></div>
+                                        <p>Future Path</p>
+                                        <div class="card-symbol"></div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg" alt="The High Priestess">
+                                    <div class="card-meaning">
+                                        <h3>The High Priestess</h3>
+                                        <p class="keywords">Intuition • Mystery • Inner voice</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="reading-message" class="reading-message"></div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+            <div class="container">
+                <h2 class="section-title">Journey Pricing</h2>
+                <p class="section-subtitle">Choose Your Mystical Path</p>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Quick Insight</h3>
+                            <div class="price">₹300</div>
+                            <p class="duration">15 Minutes</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>✧ Quick Tarot Reading</li>
+                                <li>✧ One Specific Question</li>
+                                <li>✧ Basic Guidance</li>
+                                <li>✧ Email Summary</li>
+                            </ul>
+                        </div>
+                        <a href="#booking" class="book-now-btn">Begin Journey</a>
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <div class="pricing-header">
+                            <h3>Spiritual Path</h3>
+                            <div class="price">₹500</div>
+                            <p class="duration">30 Minutes</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>✧ Detailed Tarot Reading</li>
+                                <li>✧ Multiple Questions</li>
+                                <li>✧ Spiritual Guidance</li>
+                                <li>✧ Personal Growth Insights</li>
+                                <li>✧ Detailed Email Report</li>
+                            </ul>
+                        </div>
+                        <a href="#booking" class="book-now-btn">Begin Journey</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Celestial Journey</h3>
+                            <div class="price">₹700</div>
+                            <p class="duration">60 Minutes</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>✧ Comprehensive Reading</li>
+                                <li>✧ Past, Present & Future</li>
+                                <li>✧ Deep Life Analysis</li>
+                                <li>✧ Career & Relationship Insights</li>
+                                <li>✧ Personalized Action Plan</li>
+                                <li>✧ Video Recording</li>
+                            </ul>
+                        </div>
+                        <a href="#booking" class="book-now-btn">Begin Journey</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="appointment" class="appointment-section">
+            <div class="section-content">
+                <h2>✨ Schedule Your Mystical Reading ✨</h2>
+                
+                <div class="booking-container">
+                    <!-- Direct WhatsApp Booking -->
+                    <div class="whatsapp-booking-container">
+                        <div class="whatsapp-info">
+                            <h3>Book Your Session Directly via WhatsApp</h3>
+                            <p>For a personalized tarot reading experience, connect with us directly through WhatsApp. Our mystic reader will respond to your inquiry promptly to arrange a time that works for you.</p>
+                            
+                            <h4 class="reading-options-title">Select Your Reading Type</h4>
+                            <div class="reading-type-options">
+                                <div class="reading-type-card">
+                                    <h3>Celestial Journey</h3>
+                                    <p>90 minutes • ₹700</p>
+                                    <p>Deep dive into your soul's journey with a comprehensive reading covering past, present, and future</p>
+                                </div>
+                                <div class="reading-type-card">
+                                    <h3>Spiritual Guidance</h3>
+                                    <p>60 minutes • ₹500</p>
+                                    <p>Find your spiritual path with focused insights on your current life situation</p>
+                                </div>
+                                <div class="reading-type-card">
+                                    <h3>Crystal Clear Insight</h3>
+                                    <p>30 minutes • ₹300</p>
+                                    <p>Quick answers to your specific questions for immediate clarity</p>
+                                </div>
+                            </div>
+                            
+                            <p class="booking-instructions">Click on your preferred reading type above, then use the WhatsApp button below to send your booking request.</p>
+                        </div>
+                        
+                        <a href="https://wa.me/918595121436?text=Hello,%20I%20would%20like%20to%20book%20a%20tarot%20reading%20session." class="whatsapp-button">
+                            <i class="fab fa-whatsapp"></i> Book via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" class="social-icon" id="instagram-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon" id="facebook-link">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="social-icon" id="twitter-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-icon" id="pinterest-link">
+                    <i class="fab fa-pinterest"></i>
+                </a>
+            </div>
+            <p>&copy; 2024 Mystic Tarot Reading. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="script.js"></script>
+</body>
+</html>
