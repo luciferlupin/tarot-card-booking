@@ -1,108 +1,45 @@
-const mongoose = require('mongoose');
+/**
+ * Booking model without MongoDB/Mongoose
+ */
+const { create } = require('../utils/inMemoryStore');
 
-const bookingSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true,
-        minlength: 2
-    },
-    email: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true,
-        validate: {
-            validator: function(v) {
-                return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
-            },
-            message: 'Please enter a valid email address'
-        }
-    },
-    phone: {
-        type: String,
-        required: true,
-        trim: true,
-        validate: {
-            validator: function(v) {
-                return /^\d{10}$/.test(v);
-            },
-            message: 'Please enter a valid 10-digit phone number'
-        }
-    },
-    date: {
-        type: String,
-        required: true,
-        validate: {
-            validator: function(v) {
-                return /^\d{4}-\d{2}-\d{2}$/.test(v);
-            },
-            message: 'Please enter a valid date in YYYY-MM-DD format'
-        }
-    },
-    time: {
-        type: String,
-        required: true,
-        validate: {
-            validator: function(v) {
-                return /^\d{2}:\d{2}$/.test(v);
-            },
-            message: 'Please enter a valid time in HH:MM format'
-        }
-    },
-    readingType: {
-        type: String,
-        required: true,
-        enum: ['celestial', 'spiritual', 'quick']
-    },
-    status: {
-        type: String,
-        enum: ['pending', 'confirmed', 'cancelled'],
-        default: 'pending'
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    readingName: {
-        type: String,
-        required: true
-    },
-    duration: {
-        type: Number,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    endTime: {
-        type: String,
-        required: true
+class Booking {
+    constructor(data) {
+        this.name = data.name;
+        this.email = data.email;
+        this.phone = data.phone;
+        this.date = data.date;
+        this.time = data.time;
+        this.readingType = data.readingType;
+        this.status = data.status || 'pending';
+        this.createdAt = new Date();
+        
+        // Set reading details
+        this.setReadingDetails();
     }
-});
 
-// Add virtual for formatted date
-bookingSchema.virtual('formattedDate').get(function() {
-    return new Date(this.date).toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-});
+    // Validate email
+    validateEmail() {
+        return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.email);
+    }
 
-// Add virtual for formatted time
-bookingSchema.virtual('formattedTime').get(function() {
-    return new Date(`2000-01-01T${this.time}`).toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: '2-digit'
-    });
-});
+    // Validate phone
+    validatePhone() {
+        return /^\d{10}$/.test(this.phone);
+    }
 
-// Add pre-save middleware to set reading details
-bookingSchema.pre('save', async function(next) {
-    try {
+    // Validate date
+    validateDate() {
+        return /^\d{4}-\d{2}-\d{2}$/.test(this.date);
+    }
+
+    // Validate time
+    validateTime() {
+        return /^\d{2}:\d{2}$/.test(this.time);
+    }
+
+    // Set reading details
+    setReadingDetails() {
         const readingTypes = {
             quick: {
                 name: 'Crystal Clear Insight',
@@ -128,14 +65,64 @@ bookingSchema.pre('save', async function(next) {
         
         const startTime = new Date(`${this.date}T${this.time}`);
         this.endTime = new Date(startTime.getTime() + reading.duration * 60000).toISOString().split('T')[1].substring(0, 5);
-
-        next();
-    } catch (error) {
-        console.error('Error in booking pre-save middleware:', error);
-        next(error);
     }
-});
 
-const Booking = mongoose.model('Booking', bookingSchema);
+    // Get formatted date
+    get formattedDate() {
+        return new Date(this.date).toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
+    // Get formatted time
+    get formattedTime() {
+        return new Date(`2000-01-01T${this.time}`).toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit'
+        });
+    }
+
+    // Save the booking
+    async save() {
+        if (!this.validateEmail()) {
+            throw new Error('Please enter a valid email address');
+        }
+        if (!this.validatePhone()) {
+            throw new Error('Please enter a valid 10-digit phone number');
+        }
+        if (!this.validateDate()) {
+            throw new Error('Please enter a valid date in YYYY-MM-DD format');
+        }
+        if (!this.validateTime()) {
+            throw new Error('Please enter a valid time in HH:MM format');
+        }
+        
+        return create(this);
+    }
+
+    // Static methods to match Mongoose API
+    static find(query) {
+        return require('../utils/inMemoryStore').find(query);
+    }
+
+    static findOne(query) {
+        return require('../utils/inMemoryStore').findOne(query);
+    }
+
+    static findById(id) {
+        return require('../utils/inMemoryStore').findById(id);
+    }
+
+    static findByIdAndUpdate(id, update) {
+        return require('../utils/inMemoryStore').findByIdAndUpdate(id, update);
+    }
+
+    static findByIdAndDelete(id) {
+        return require('../utils/inMemoryStore').findByIdAndDelete(id);
+    }
+}
 
 module.exports = Booking;
