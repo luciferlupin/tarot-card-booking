@@ -1,0 +1,148 @@
+/* Scroll Animations */
+
+/* Base styles for animated elements */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-on-scroll.animate-left {
+    transform: translateX(-40px);
+}
+
+.animate-on-scroll.animate-right {
+    transform: translateX(40px);
+}
+
+.animate-on-scroll.animate-scale {
+    transform: scale(0.9);
+}
+
+/* Animation when element becomes visible */
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/* Staggered animation delays for multiple elements */
+.animate-on-scroll.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.animate-on-scroll.delay-2 {
+    transition-delay: 0.4s;
+}
+
+.animate-on-scroll.delay-3 {
+    transition-delay: 0.6s;
+}
+
+/* Fade-in animation */
+.fade-in {
+    animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Subtle floating animation for decorative elements */
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Glow pulse animation */
+.glow-animation {
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(155, 109, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(155, 109, 255, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(155, 109, 255, 0.5);
+    }
+}
+
+/* Section reveal animation */
+.reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.reveal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--bg-dark), var(--accent-1));
+    transform: translateX(-100%);
+    animation: revealAnimation 1.5s ease forwards;
+}
+
+@keyframes revealAnimation {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Typewriter effect for headings */
+.typewriter h2 {
+    overflow: hidden;
+    border-right: 3px solid var(--accent-1);
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent-1) }
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.2s ease;
+}
+.section-subtitle { text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }

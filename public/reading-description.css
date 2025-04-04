@@ -1,0 +1,79 @@
+/* Enhanced Reading Description */
+.reading-description {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 25px 30px;
+    background: rgba(26, 11, 46, 0.7);
+    border-radius: 15px;
+    border-left: 3px solid var(--accent-1);
+    border-right: 3px solid var(--accent-2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 
+                inset 0 0 20px rgba(155, 109, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.reading-description::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+                rgba(155, 109, 255, 0.1) 0%, 
+                rgba(0, 0, 0, 0) 50%, 
+                rgba(245, 193, 86, 0.1) 100%);
+    pointer-events: none;
+}
+
+.reading-description p {
+    color: var(--text-light);
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.reading-description p:last-child {
+    margin-bottom: 0;
+    font-style: italic;
+    color: var(--accent-2);
+}
+
+.reading-description ul {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.reading-description li {
+    color: var(--text-light);
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 10px;
+    list-style-type: none;
+}
+
+.reading-description li::before {
+    content: '✧';
+    position: absolute;
+    left: -15px;
+    color: var(--accent-1);
+}
+
+.reading-description strong {
+    color: var(--accent-1);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .reading-description {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .reading-description p {
+        font-size: 1em;
+    }
+}

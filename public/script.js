@@ -131,8 +131,23 @@ function updateReadingMessage() {
                 ${messages.map(msg => `<li>${msg}</li>`).join('')}
             </ul>
         `;
+        
+        // Add comprehensive reading when all three cards are flipped
+        if (messages.length === 3) {
+            messageElement.innerHTML += `
+                <div class="complete-reading">
+                    <h3>Complete Reading Interpretation</h3>
+                    <p>Looking at all three cards together, your journey shows a beautiful progression. You began with the courage to take a leap of faith (The Fool), which has led you to your current position of power and manifestation (The Magician). Moving forward, your path suggests developing deeper intuition and inner wisdom (The High Priestess).</p>
+                    <p>This spread indicates you're in a powerful creative cycle where past experiences have prepared you for your current opportunities, and your future success depends on balancing action with intuition. Trust your inner voice as you continue to manifest your desires.</p>
+                </div>
+            `;
+        }
+        
+        // Make the message visible
+        messageElement.classList.add('visible');
     } else {
         messageElement.innerHTML = '';
+        messageElement.classList.remove('visible');
     }
 }
 
@@ -149,25 +164,40 @@ document.addEventListener('click', function(event) {
 
 // Initialize WhatsApp link with dynamic content
 document.addEventListener('DOMContentLoaded', function() {
-    // Update WhatsApp link when reading type is clicked
-    const readingCards = document.querySelectorAll('.reading-type-card');
+    // Update WhatsApp link when service type is clicked
+    const serviceCards = document.querySelectorAll('.reading-type-card');
     const whatsappButton = document.querySelector('.whatsapp-button');
     
-    if (readingCards.length > 0 && whatsappButton) {
-        readingCards.forEach(card => {
+    if (serviceCards.length > 0 && whatsappButton) {
+        const baseUrl = "https://wa.me/918595121436";
+        
+        serviceCards.forEach(card => {
             card.addEventListener('click', function() {
                 // Remove active class from all cards
-                readingCards.forEach(c => c.classList.remove('active-reading'));
+                serviceCards.forEach(c => c.classList.remove('active'));
                 
                 // Add active class to clicked card
-                this.classList.add('active-reading');
+                this.classList.add('active');
                 
-                // Get reading type from the card's heading
-                const readingType = this.querySelector('h3').textContent;
+                // Get service type and create appropriate message
+                const serviceType = this.getAttribute('data-service');
+                const serviceTitle = this.querySelector('h3').textContent;
+                let message = `Hello, I would like to book a ${serviceTitle}.`;
                 
-                // Update WhatsApp link with selected reading type
-                const baseUrl = 'https://wa.me/918595121436';
-                const message = `Hello, I would like to book a "${readingType}" tarot reading session.`;
+                // Add specific details based on service type
+                if (serviceType === 'telephonic-questions') {
+                    message += " I'm interested in the question-based service. Please let me know the available time slots.";
+                } else if (serviceType === 'telephonic-time') {
+                    message += " I'm interested in the time-based service. Please let me know the available time slots.";
+                } else if (serviceType === 'text-based') {
+                    message += " I'm interested in the text-based service. Please let me know how to proceed.";
+                } else if (serviceType === 'detailed-reports') {
+                    message += " I'm interested in getting a detailed report. Please let me know what information you need from me.";
+                } else if (serviceType === 'tarot-courses') {
+                    message += " I'm interested in learning more about your tarot courses. Please provide me with more information.";
+                }
+                
+                // Update WhatsApp link
                 whatsappButton.href = `${baseUrl}?text=${encodeURIComponent(message)}`;
             });
         });
@@ -417,4 +447,128 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+});
+
+// Service Cards Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const serviceCards = document.querySelectorAll('.service-card');
+    const modal = document.getElementById('serviceModal');
+    const modalBody = document.querySelector('.modal-body');
+    const closeModal = document.querySelector('.close-modal');
+    const serviceDetails = document.querySelector('.service-details');
+    
+    // Open modal when clicking on a service card
+    serviceCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const serviceType = this.getAttribute('data-service');
+            const detailsContent = document.getElementById(`${serviceType}-details`);
+            
+            if (detailsContent) {
+                // Clone the content to avoid removing it from the original container
+                const contentClone = detailsContent.cloneNode(true);
+                
+                // Clear previous content and add new content
+                modalBody.innerHTML = '';
+                modalBody.appendChild(contentClone);
+                
+                // Show the modal with animation
+                modal.style.display = 'block';
+                
+                // Add event listener to the "Book Now" button in the modal
+                const bookButton = modalBody.querySelector('.book-now-btn');
+                if (bookButton) {
+                    bookButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Close the modal
+                        modal.style.display = 'none';
+                        
+                        // Scroll to the appointment section
+                        const appointmentSection = document.getElementById('appointment');
+                        if (appointmentSection) {
+                            appointmentSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            
+                            // Select the corresponding service in the booking form if available
+                            const serviceInput = document.querySelector(`input[name="service"][value="${serviceType}"]`);
+                            if (serviceInput) {
+                                serviceInput.checked = true;
+                            }
+                        }
+                    });
+                }
+                
+                // Add mystical particles to the modal for enhanced effect
+                const particles = document.createElement('div');
+                particles.className = 'modal-particles';
+                modalBody.appendChild(particles);
+                
+                // Create floating particles
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('span');
+                    particle.className = 'modal-particle';
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.animationDelay = `${Math.random() * 5}s`;
+                    particle.style.opacity = Math.random() * 0.5 + 0.1;
+                    particle.style.fontSize = `${Math.random() * 10 + 10}px`;
+                    particle.innerHTML = '✧';
+                    particles.appendChild(particle);
+                }
+            }
+        });
+    });
+    
+    // Close modal when clicking the close button
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+    
+    // Close modal when clicking outside the modal content
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+            modal.style.display = 'none';
+        }
+    });
+});
+
+// Add CSS for modal particles
+document.addEventListener('DOMContentLoaded', function() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .modal-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .modal-particle {
+            position: absolute;
+            color: var(--accent-1);
+            animation: float 10s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+    `;
+    document.head.appendChild(style);
 });
