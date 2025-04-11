@@ -64,13 +64,13 @@
     }
     
     .reader-image {
-        flex: 0 0 130px;
-        margin-right: 10px;
+        flex: 0 0 90px;
+        margin-right: 8px;
     }
     
     .reader-photo {
-        width: 130px;
-        height: 180px;
+        width: 90px;
+        height: 115px;
     }
     
     /* Testimonial adjustments */
@@ -255,13 +255,13 @@
     }
     
     .reader-image {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         margin-right: 0;
     }
     
     .reader-photo {
-        width: 120px;
-        height: 160px;
+        width: 80px;
+        height: 105px;
     }
     
     .reader-description {
