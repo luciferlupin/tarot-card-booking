@@ -58,6 +58,20 @@
         grid-column: auto;
     }
     
+    /* Reader profile adjustments */
+    .reader-profile {
+        justify-content: center;
+    }
+    
+    .reader-image {
+        flex: 0 0 160px;
+    }
+    
+    .reader-photo {
+        width: 160px;
+        height: 160px;
+    }
+    
     /* Testimonial adjustments */
     .testimonial {
         padding: 20px;
@@ -207,6 +221,44 @@
     /* Footer adjustments */
     .footer {
         padding: 40px 0;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 576px) {
+    .container {
+        width: 95%;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* Reader profile mobile adjustments */
+    .reader-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .reader-image {
+        margin-bottom: 20px;
+    }
+    
+    .reader-description {
+        text-align: center;
     }
 }
 

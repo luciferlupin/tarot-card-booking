@@ -1471,8 +1471,8 @@ section::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 30%, rgba(155, 109, 255, 0.1), transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(155, 109, 255, 0.1), transparent 40%);
+        radial-gradient(circle at 20% 30%, var(--accent-3), transparent 40%),
+        radial-gradient(circle at 80% 70%, var(--accent-2), transparent 40%);
     pointer-events: none;
     z-index: 0;
 }
@@ -1759,13 +1759,11 @@ section::before {
 }
 
 .about-bio {
-    max-width: 900px;
-    margin: 0 auto 60px;
+    margin: 40px 0;
     padding: 30px;
-    background: rgba(74, 16, 145, 0.2);
+    background: rgba(74, 16, 145, 0.05);
     border-radius: 15px;
-    border: 1px solid rgba(155, 109, 255, 0.3);
-    box-shadow: 0 0 30px rgba(155, 109, 255, 0.2);
+    border: 1px solid rgba(155, 109, 255, 0.2);
 }
 
 .about-bio h2 {
@@ -1779,23 +1777,28 @@ section::before {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    align-items: flex-start;
-    justify-content: center;
-    margin-bottom: 40px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
 }
 
 .reader-image {
-    flex: 0 0 150px;
+    flex: 0 0 180px;
 }
 
 .reader-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 20%;
     box-shadow: 0 0 20px rgba(155, 109, 255, 0.5);
     border: 2px solid rgba(155, 109, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.reader-photo:hover {
+    transform: scale(1.05);
 }
 
 .image-placeholder {
