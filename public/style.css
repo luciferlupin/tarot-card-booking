@@ -1783,17 +1783,17 @@ section::before {
 }
 
 .reader-image {
-    flex: 0 0 180px;
+    flex: 0 0 120px;
 }
 
 .reader-photo {
-    width: 180px;
-    height: 180px;
-    border-radius: 10px;
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
     object-fit: cover;
     object-position: center 20%;
-    box-shadow: 0 0 20px rgba(155, 109, 255, 0.5);
-    border: 2px solid rgba(155, 109, 255, 0.3);
+    box-shadow: 0 0 15px rgba(155, 109, 255, 0.4);
+    border: 1px solid rgba(155, 109, 255, 0.3);
     transition: transform 0.3s ease;
 }
 
