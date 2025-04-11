@@ -834,13 +834,6 @@ section::before {
     transform: rotateY(180deg);
 }
 
-.card-back img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
 .card.flipped .card-inner {
     transform: rotateY(180deg);
 }
@@ -1777,46 +1770,9 @@ section::before {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     margin-bottom: 20px;
-}
-
-.reader-image {
-    flex: 0 0 100px;
-    margin-right: 10px;
-}
-
-.reader-photo {
-    width: 100px;
-    height: 130px;
-    border-radius: 6px;
-    object-fit: cover;
-    object-position: center 10%;
-    box-shadow: 0 0 15px rgba(155, 109, 255, 0.4);
-    border: 1px solid rgba(155, 109, 255, 0.3);
-    transition: transform 0.3s ease;
-}
-
-.reader-photo:hover {
-    transform: scale(1.05);
-}
-
-.image-placeholder {
-    width: 100px;
-    height: 130px;
-    border-radius: 6px;
-    background: var(--mystical-gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 20px rgba(155, 109, 255, 0.5);
-}
-
-.image-placeholder .crystal-icon {
-    font-size: 4em;
-    color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .reader-description {
@@ -1895,6 +1851,7 @@ section::before {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%239b6dff" opacity="0.3"/></svg>');
     opacity: 0.2;
     pointer-events: none;
+    z-index: 0;
 }
 
 .service-cards {
