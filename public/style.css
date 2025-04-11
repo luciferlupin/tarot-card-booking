@@ -1779,32 +1779,34 @@ section::before {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    margin-bottom: 40px;
 }
 
 .reader-image {
-    flex: 0 0 200px;
+    flex: 0 0 150px;
 }
 
 .reader-photo {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 0 30px rgba(155, 109, 255, 0.5);
-    border: 3px solid rgba(155, 109, 255, 0.3);
+    object-position: center top;
+    box-shadow: 0 0 20px rgba(155, 109, 255, 0.5);
+    border: 2px solid rgba(155, 109, 255, 0.3);
 }
 
 .image-placeholder {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background: var(--mystical-gradient);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 30px rgba(155, 109, 255, 0.5);
+    box-shadow: 0 0 20px rgba(155, 109, 255, 0.5);
 }
 
 .image-placeholder .crystal-icon {
@@ -1814,7 +1816,8 @@ section::before {
 }
 
 .reader-description {
-    flex: 1 1 400px;
+    flex: 1;
+    min-width: 300px;
     text-align: left;
 }
 
