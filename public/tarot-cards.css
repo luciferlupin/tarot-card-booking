@@ -58,6 +58,7 @@
     backface-visibility: hidden;
     border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
 }
 
 /* Card Front Design */
@@ -125,37 +126,44 @@
     background: #f9f9f9;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .card-back img {
     width: 100%;
     height: 75%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
+    background-color: #f5f5f5;
     border-bottom: 3px solid #1a0b2e;
+    padding: 5px;
 }
 
 .card-meaning {
-    padding: 15px;
+    padding: 10px 15px;
     background: #1a0b2e;
     height: 25%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .card-meaning h3 {
     color: var(--accent-1);
     margin: 0 0 5px 0;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-align: center;
+    line-height: 1.2;
 }
 
 .keywords {
     color: var(--text-light);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-align: center;
     margin: 0;
     font-style: italic;
+    line-height: 1.3;
 }
 
 /* Hover Effects */
