@@ -246,16 +246,49 @@ section {
     text-shadow: 0 0 10px var(--text-glow);
 }
 
+/* Enhanced Section Subtitle Styling */
 .section-subtitle {
-    font-size: 1.2rem;
-    color: var(--text-light);
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
     font-weight: 400;
+    font-style: italic;
+    color: var(--accent-1);
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: 1.5px;
     line-height: 1.6;
-    letter-spacing: 0.5px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
+    padding: 0 30px;
+    text-shadow: 0 0 10px rgba(245, 193, 86, 0.3);
+}
+
+.section-subtitle::before,
+.section-subtitle::after {
+    content: "✧";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-1);
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.section-subtitle::before {
+    left: 0;
+}
+
+.section-subtitle::after {
+    right: 0;
+}
+
+@media (max-width: 768px) {
+    .section-subtitle {
+        font-size: 1.2rem;
+        padding: 0 20px;
+    }
 }
 
 .appointment-section .section-subtitle {

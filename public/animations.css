@@ -145,4 +145,40 @@
     width: 0%;
     transition: width 0.2s ease;
 }
-.section-subtitle { text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+/* Section Subtitle Animation */
+@keyframes subtitleGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(245, 193, 86, 0.2);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(245, 193, 86, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(245, 193, 86, 0.2);
+    }
+}
+
+.section-subtitle {
+    text-align: center; 
+    max-width: 800px; 
+    margin-left: auto; 
+    margin-right: auto;
+    animation: subtitleGlow 3s ease-in-out infinite;
+}
+
+.section-subtitle::before,
+.section-subtitle::after {
+    animation: starTwinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes starTwinkle {
+    0% {
+        opacity: 0.6;
+        transform: translateY(-50%) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.1);
+    }
+}
