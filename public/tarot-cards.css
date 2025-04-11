@@ -27,7 +27,7 @@
 }
 
 /* Card Base Styles */
-.card {
+.tarot-card {
     width: 220px;
     height: 380px;
     position: relative;
@@ -38,11 +38,11 @@
     border-radius: 15px;
 }
 
-.card.flipped {
+.tarot-card.flipped {
     transform: rotateY(180deg);
 }
 
-.card-inner {
+.tarot-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
@@ -51,7 +51,7 @@
     overflow: hidden;
 }
 
-.card-front, .card-back {
+.tarot-card-front, .tarot-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -62,7 +62,7 @@
 }
 
 /* Card Front Design */
-.card-front {
+.tarot-card-front {
     background: linear-gradient(135deg, #1a0b2e, #2d1b4e);
     display: flex;
     justify-content: center;
@@ -111,7 +111,7 @@
     opacity: 0.8;
 }
 
-.card-front p {
+.tarot-card-front p {
     color: var(--text-light);
     font-size: 1.1rem;
     text-align: center;
@@ -121,7 +121,7 @@
 }
 
 /* Card Back Design */
-.card-back {
+.tarot-card-back {
     transform: rotateY(180deg);
     background: #f9f9f9;
     display: flex;
@@ -129,7 +129,7 @@
     overflow: hidden;
 }
 
-.card-back img {
+.tarot-card-back img {
     width: 100%;
     height: 75%;
     object-fit: contain;
@@ -167,12 +167,12 @@
 }
 
 /* Hover Effects */
-.card:hover {
-    transform: translateY(-10px) rotateY(0deg);
+.tarot-card:hover {
+    transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
-.card.flipped:hover {
+.tarot-card.flipped:hover {
     transform: translateY(-10px) rotateY(180deg);
 }
 
@@ -182,7 +182,7 @@
         gap: 30px;
     }
     
-    .card {
+    .tarot-card {
         width: 200px;
         height: 340px;
     }
@@ -195,7 +195,7 @@
         gap: 50px;
     }
     
-    .card {
+    .tarot-card {
         width: 240px;
         height: 400px;
     }

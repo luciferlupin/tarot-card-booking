@@ -1,161 +1,174 @@
-const cardMeanings = {
-    fool: {
-        title: "The Fool",
-        message: "The Fool represents a new beginning, pure innocence, and spontaneity. In the past position, it suggests you've taken a leap of faith or started a significant journey with an open heart. This card reminds you of a time when you embraced new opportunities without fear.",
+// Tarot card data
+const tarotCards = {
+    past: {
+        name: "The Fool",
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg",
+        meaning: "The Fool represents a new beginning, pure innocence, and spontaneity. In the past position, it suggests you've taken a leap of faith or started a significant journey with an open heart.",
         keywords: "New beginnings • Spontaneity • Faith"
     },
-    magician: {
-        title: "The Magician",
-        message: "The Magician symbolizes manifestation, resourcefulness, and power. In your present position, it indicates you have all the tools and skills needed to achieve your goals. This is a time of taking action and harnessing your personal power.",
+    present: {
+        name: "The Magician",
+        image: "https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg",
+        meaning: "The Magician symbolizes manifestation, resourcefulness, and power. In your present position, it indicates you have all the tools and skills needed to achieve your goals.",
         keywords: "Manifestation • Power • Action"
     },
-    priestess: {
-        title: "The High Priestess",
-        message: "The High Priestess represents intuition, mystery, and inner knowledge. In the future position, she suggests that trusting your intuition will lead you to profound insights. Listen to your inner voice and pay attention to your dreams.",
+    future: {
+        name: "The High Priestess",
+        image: "https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg",
+        meaning: "The High Priestess represents intuition, mystery, and inner knowledge. In the future position, she suggests that trusting your intuition will lead you to profound insights.",
         keywords: "Intuition • Mystery • Inner voice"
     }
 };
 
+// Track flipped cards and reading state
 let flippedCards = [];
-let readingInProgress = false;
+let readingComplete = false;
 
-// Card Flipping Functionality
-function flipCard(card) {
-    // Check if reading is already complete
-    if (readingInProgress) return;
+// Initialize tarot cards
+document.addEventListener('DOMContentLoaded', function() {
+    initializeTarotCards();
+});
+
+function initializeTarotCards() {
+    const cards = document.querySelectorAll('.tarot-card');
     
-    // Check if we already have 3 cards flipped
-    const flippedCount = document.querySelectorAll('.card.flipped').length;
-    if (flippedCount >= 3 && !card.classList.contains('flipped')) return;
+    cards.forEach(card => {
+        // Add click event listener
+        card.addEventListener('click', function() {
+            flipTarotCard(this);
+        });
+        
+        // Add touch event listener for mobile
+        card.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            flipTarotCard(this);
+        });
+    });
+}
+
+function flipTarotCard(card) {
+    // Don't allow flipping if reading is complete
+    if (readingComplete) return;
     
-    // Toggle the flipped state
-    if (!card.classList.contains('flipped')) {
-        card.classList.add('flipped');
-        flippedCards.push(card);
-        
-        // Update reading message
-        updateReadingMessage();
-        
-        // Check if we've flipped all three cards
-        if (flippedCards.length === 3) {
-            readingInProgress = true;
-            setTimeout(showReading, 1000);
-        }
+    // Don't flip if already flipped
+    if (card.classList.contains('flipped')) return;
+    
+    // Flip the card with animation
+    card.classList.add('flipped');
+    
+    // Add to flipped cards array
+    const position = card.getAttribute('data-position');
+    flippedCards.push(position);
+    
+    // Play flip sound
+    playCardFlipSound();
+    
+    // Update the reading message
+    updateReadingMessage();
+    
+    // Check if all cards are flipped
+    if (flippedCards.length === 3) {
+        readingComplete = true;
+        setTimeout(showFullReading, 1000);
     }
 }
 
-function showReading() {
-    const readingMessage = document.getElementById('reading-message');
-    let readingHTML = `
-        <h3>Your Three Card Reading</h3>
-        <div class="reading-cards">
-    `;
-    
-    const positions = ['Past', 'Present', 'Future'];
-    flippedCards.forEach((card, index) => {
-        const cardType = card.getAttribute('data-card');
-        const meaning = cardMeanings[cardType];
-        
-        readingHTML += `
-            <div class="reading-card">
-                <h4>${positions[index]} - ${meaning.title}</h4>
-                <p class="keywords">${meaning.keywords}</p>
-                <p class="message">${meaning.message}</p>
-            </div>
-        `;
-    });
-
-    readingHTML += `
-        </div>
-        <button onclick="resetReading()" class="submit-button">New Reading</button>
-    `;
-
-    readingMessage.innerHTML = readingHTML;
-    readingMessage.classList.add('visible');
-}
-
-function resetReading() {
-    readingInProgress = false;
-    flippedCards.forEach(card => {
-        card.classList.remove('flipped');
-    });
-    flippedCards = [];
-    
-    const readingMessage = document.getElementById('reading-message');
-    readingMessage.classList.remove('visible');
-    setTimeout(() => {
-        readingMessage.innerHTML = '';
-    }, 500);
-}
-
-function scrollToAppointment() {
-    document.getElementById('appointment').scrollIntoView({ 
-        behavior: 'smooth' 
-    });
+function playCardFlipSound() {
+    // You can add a sound effect here if desired
 }
 
 function updateReadingMessage() {
-    const cards = document.querySelectorAll('.card.flipped');
     const messageElement = document.getElementById('reading-message');
+    if (!messageElement) return;
     
-    const messages = [];
-
-    // Past Card Message
-    const pastCard = document.querySelector('.card[data-card="fool"].flipped');
-    if (pastCard) {
-        messages.push("Your past shows new beginnings and taking a leap of faith. This suggests you've been embracing change and stepping into the unknown.");
-    }
-
-    // Present Card Message
-    const presentCard = document.querySelector('.card[data-card="magician"].flipped');
-    if (presentCard) {
-        messages.push("Your present is about manifesting your desires and taking action. This indicates you have the tools and resources to create your reality.");
-    }
-
-    // Future Card Message
-    const futureCard = document.querySelector('.card[data-card="priestess"].flipped');
-    if (futureCard) {
-        messages.push("Your future suggests trusting your intuition and inner wisdom. This points to a need to look within for answers and trust your instincts.");
-    }
-
-    // Generate comprehensive message
-    if (messages.length > 0) {
-        messageElement.innerHTML = `
-            <h3>Your Reading:</h3>
-            <ul>
-                ${messages.map(msg => `<li>${msg}</li>`).join('')}
-            </ul>
-        `;
-        
-        // Add comprehensive reading when all three cards are flipped
-        if (messages.length === 3) {
-            messageElement.innerHTML += `
-                <div class="complete-reading">
-                    <h3>Complete Reading Interpretation</h3>
-                    <p>Looking at all three cards together, your journey shows a beautiful progression. You began with the courage to take a leap of faith (The Fool), which has led you to your current position of power and manifestation (The Magician). Moving forward, your path suggests developing deeper intuition and inner wisdom (The High Priestess).</p>
-                    <p>This spread indicates you're in a powerful creative cycle where past experiences have prepared you for your current opportunities, and your future success depends on balancing action with intuition. Trust your inner voice as you continue to manifest your desires.</p>
-                </div>
-            `;
-        }
-        
-        // Make the message visible
+    let message = "";
+    
+    // Build message based on flipped cards
+    flippedCards.forEach(position => {
+        const card = tarotCards[position];
+        message += `<div class="reading-card-message">
+            <h4>${position.charAt(0).toUpperCase() + position.slice(1)}: ${card.name}</h4>
+            <p>${card.meaning}</p>
+        </div>`;
+    });
+    
+    // Update the message element
+    messageElement.innerHTML = message;
+    
+    // Show the message if there are flipped cards
+    if (flippedCards.length > 0) {
         messageElement.classList.add('visible');
-    } else {
-        messageElement.innerHTML = '';
-        messageElement.classList.remove('visible');
     }
 }
 
-// Reset functionality
-document.addEventListener('click', function(event) {
-    if (!event.target.closest('.card')) {
-        const cards = document.querySelectorAll('.card.flipped');
-        cards.forEach(card => {
-            card.classList.remove('flipped');
-        });
-        updateReadingMessage();
+function showFullReading() {
+    const messageElement = document.getElementById('reading-message');
+    if (!messageElement) return;
+    
+    let readingHTML = `
+        <h3>Your Tarot Reading</h3>
+        <div class="full-reading">
+    `;
+    
+    // Add each card to the reading
+    flippedCards.forEach(position => {
+        const card = tarotCards[position];
+        readingHTML += `
+            <div class="reading-card">
+                <h4>${position.charAt(0).toUpperCase() + position.slice(1)}: ${card.name}</h4>
+                <p class="keywords">${card.keywords}</p>
+                <p>${card.meaning}</p>
+            </div>
+        `;
+    });
+    
+    // Add overall interpretation
+    readingHTML += `
+        <div class="reading-interpretation">
+            <h4>Overall Interpretation</h4>
+            <p>This reading suggests a journey from ${tarotCards.past.name} energy in your past, 
+            through the current influence of ${tarotCards.present.name}, 
+            leading toward the potential of ${tarotCards.future.name} in your future.</p>
+            <p>Consider how these energies are flowing through your life right now.</p>
+        </div>
+    `;
+    
+    // Add reset button
+    readingHTML += `
+        </div>
+        <button onclick="resetTarotReading()" class="submit-button">New Reading</button>
+    `;
+    
+    // Update the message element
+    messageElement.innerHTML = readingHTML;
+    messageElement.classList.add('visible', 'full-reading-visible');
+    
+    // Scroll to the reading
+    setTimeout(() => {
+        messageElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+}
+
+function resetTarotReading() {
+    // Reset state
+    flippedCards = [];
+    readingComplete = false;
+    
+    // Flip all cards back
+    const cards = document.querySelectorAll('.tarot-card');
+    cards.forEach(card => {
+        card.classList.remove('flipped');
+    });
+    
+    // Hide and clear the reading message
+    const messageElement = document.getElementById('reading-message');
+    if (messageElement) {
+        messageElement.classList.remove('visible', 'full-reading-visible');
+        setTimeout(() => {
+            messageElement.innerHTML = '';
+        }, 500);
     }
-});
+}
 
 // Initialize WhatsApp link with dynamic content
 document.addEventListener('DOMContentLoaded', function() {
@@ -271,13 +284,13 @@ document.querySelectorAll('.card').forEach(card => {
     // Add touch event
     card.addEventListener('touchstart', function(e) {
         e.preventDefault();
-        flipCard(this);
+        flipTarotCard(this);
     });
     
     // Add click event
     card.addEventListener('click', function(e) {
         e.preventDefault();
-        flipCard(this);
+        flipTarotCard(this);
     });
 });
 
