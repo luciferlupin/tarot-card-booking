@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const whatsappButton = document.querySelector('.whatsapp-button');
     
     if (serviceCards.length > 0 && whatsappButton) {
-        const baseUrl = "https://wa.me/918595121436";
+        const baseUrl = "https://wa.me/919211370852";
         
         serviceCards.forEach(card => {
             card.addEventListener('click', function() {
