@@ -19,6 +19,7 @@ const cardMeanings = {
 let flippedCards = [];
 let readingInProgress = false;
 
+// Card Flipping Functionality
 function flipCard(card) {
     // Check if reading is already complete
     if (readingInProgress) return;
@@ -31,6 +32,9 @@ function flipCard(card) {
     if (!card.classList.contains('flipped')) {
         card.classList.add('flipped');
         flippedCards.push(card);
+        
+        // Update reading message
+        updateReadingMessage();
         
         // Check if we've flipped all three cards
         if (flippedCards.length === 3) {
@@ -88,15 +92,6 @@ function scrollToAppointment() {
     document.getElementById('appointment').scrollIntoView({ 
         behavior: 'smooth' 
     });
-}
-
-// Enhanced Card Flipping Functionality
-function flipCard(card) {
-    if (!card.classList.contains('flipped')) {
-        // Only flip if not already flipped
-        card.classList.add('flipped');
-        updateReadingMessage();
-    }
 }
 
 function updateReadingMessage() {
