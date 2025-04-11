@@ -1783,16 +1783,16 @@ section::before {
 }
 
 .reader-image {
-    flex: 0 0 140px;
-    margin-right: 10px;
+    flex: 0 0 150px;
+    margin-right: 15px;
 }
 
 .reader-photo {
-    width: 140px;
-    height: 180px;
-    border-radius: 5px;
+    width: 150px;
+    height: 200px;
+    border-radius: 8px;
     object-fit: cover;
-    object-position: center 15%;
+    object-position: center 10%;
     box-shadow: 0 0 15px rgba(155, 109, 255, 0.4);
     border: 1px solid rgba(155, 109, 255, 0.3);
     transition: transform 0.3s ease;
