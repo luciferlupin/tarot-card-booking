@@ -7,6 +7,7 @@ const bookingRoutes = require('./routes/bookingRoutes');
 
 // Load environment variables
 dotenv.config();
+dotenv.config({ path: '.env.local' });
 
 const app = express();
 
@@ -33,7 +34,7 @@ async function connectToMongoDB() {
         return client;
     } catch (error) {
         console.error('MongoDB connection error:', error);
-        throw error;
+        return null;
     }
 }
 
@@ -42,56 +43,8 @@ let mongoClient;
 
 async function initializeServer() {
     try {
-        // Connect to MongoDB
-        mongoClient = await connectToMongoDB();
-        
-        // Make client available to routes
-        app.locals.mongoClient = mongoClient;
-
-        // Create collections if they don't exist
-        try {
-            await mongoClient.db("tarot-readings").createCollection("bookings", {
-                validator: {
-                    $jsonSchema: {
-                        bsonType: "object",
-                        required: ["name", "email", "phone", "date", "time", "readingType"],
-                        properties: {
-                            name: { bsonType: "string" },
-                            email: { bsonType: "string" },
-                            phone: { bsonType: "string" },
-                            date: { bsonType: "string" },
-                            time: { bsonType: "string" },
-                            readingType: { bsonType: "string" }
-                        }
-                    }
-                }
-            }).catch(err => {
-                console.log("Collection already exists or other error:", err);
-            });
-        } catch (error) {
-            console.error('Error creating collection:', error);
-            throw error;
-        }
-
-        // Routes
-        app.use('/api/bookings', bookingRoutes);
-
-        // Serve index.html for all GET requests
-        app.get('*', (req, res) => {
-            res.sendFile(path.join(__dirname, 'public', 'index.html'));
-        });
-
-        // Error handling middleware
-        app.use((err, req, res, next) => {
-            console.error('Error:', err);
-            res.status(500).json({
-                message: 'An unexpected error occurred',
-                error: process.env.NODE_ENV === 'development' ? err.message : 'Please try again later'
-            });
-        });
-
-        // Start server
-        const PORT = process.env.PORT || 3000;
+        // Start server first to ensure the website is always available
+        const PORT = 3000;
         let server;
 
         try {
@@ -110,9 +63,69 @@ async function initializeServer() {
             }
         }
 
+        // Serve index.html for all GET requests
+        app.get('*', (req, res) => {
+            res.sendFile(path.join(__dirname, 'index.html'));
+        });
+
+        // Try to connect to MongoDB
+        mongoClient = await connectToMongoDB();
+        
+        if (mongoClient) {
+            // Make client available to routes
+            app.locals.mongoClient = mongoClient;
+
+            // Create collections if they don't exist
+            try {
+                await mongoClient.db("tarot-readings").createCollection("bookings", {
+                    validator: {
+                        $jsonSchema: {
+                            bsonType: "object",
+                            required: ["name", "email", "phone", "date", "time", "readingType"],
+                            properties: {
+                                name: { bsonType: "string" },
+                                email: { bsonType: "string" },
+                                phone: { bsonType: "string" },
+                                date: { bsonType: "string" },
+                                time: { bsonType: "string" },
+                                readingType: { bsonType: "string" }
+                            }
+                        }
+                    }
+                }).catch(err => {
+                    console.log("Collection already exists or other error:", err);
+                });
+            } catch (error) {
+                console.error('Error creating collection:', error);
+            }
+
+            // Routes - only set up if MongoDB is connected
+            app.use('/api/bookings', bookingRoutes);
+        } else {
+            console.log('MongoDB connection failed. API routes will not be available.');
+            
+            // Add a fallback route for API requests when MongoDB is not available
+            app.use('/api/bookings', (req, res) => {
+                res.status(503).json({
+                    message: 'Database service unavailable. Please try again later.'
+                });
+            });
+        }
+
+        // Error handling middleware
+        app.use((err, req, res, next) => {
+            console.error('Error:', err);
+            res.status(500).json({
+                message: 'An unexpected error occurred',
+                error: process.env.NODE_ENV === 'development' ? err.message : 'Please try again later'
+            });
+        });
+
         // Handle graceful shutdown
         const shutdown = async () => {
-            await mongoClient.close();
+            if (mongoClient) {
+                await mongoClient.close();
+            }
             server.close(() => {
                 console.log('Server and MongoDB connection closed');
                 process.exit(0);
