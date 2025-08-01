@@ -1,0 +1,358 @@
+/* Comprehensive Responsive Styles for Tarot Card Booking Website */
+
+/* Base responsive settings */
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 90%;
+        max-width: 1000px;
+    }
+    
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .pricing-grid {
+        gap: 20px;
+    }
+}
+
+/* Tablet and smaller desktop screens */
+@media screen and (max-width: 992px) {
+    .container {
+        width: 90%;
+        max-width: 800px;
+    }
+    
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    /* Navigation adjustments */
+    .nav-links {
+        gap: 20px;
+    }
+    
+    /* Card deck adjustments */
+    .card-deck {
+        gap: 25px;
+    }
+    
+    /* Pricing section adjustments */
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .pricing-card.featured {
+        grid-column: auto;
+    }
+    
+    /* Reader profile adjustments */
+    .reader-profile {
+        justify-content: center;
+    }
+    
+    /* Testimonial adjustments */
+    .testimonial {
+        padding: 20px;
+    }
+    
+    /* Footer adjustments */
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-links, .footer-contact {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Tablets and large mobile */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    
+    /* Header adjustments */
+    .header {
+        padding: 15px 0;
+    }
+    
+    .nav-links {
+        display: none; /* Hide regular nav on mobile */
+    }
+    
+    .mobile-menu-btn {
+        display: block; /* Show mobile menu button */
+    }
+    
+    /* Hero section adjustments */
+    .hero-content {
+        padding: 60px 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+    }
+    
+    /* Section adjustments */
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    /* Card deck adjustments */
+    .card-deck {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    
+    .card {
+        width: 280px;
+        height: 400px;
+    }
+    
+    /* Reading message adjustments */
+    .reading-message {
+        padding: 15px;
+    }
+    
+    .reading-message h3 {
+        font-size: 1.3rem;
+    }
+    
+    .reading-message li {
+        font-size: 1rem;
+        padding: 10px;
+    }
+    
+    .complete-reading h3 {
+        font-size: 1.4rem;
+    }
+    
+    .complete-reading p {
+        font-size: 1rem;
+    }
+    
+    /* Pricing section adjustments */
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .pricing-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    /* Booking section adjustments */
+    .whatsapp-booking-container {
+        padding: 20px;
+    }
+    
+    .reading-types-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Testimonial adjustments */
+    .testimonials-container {
+        flex-direction: column;
+    }
+    
+    .testimonial {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    /* Form adjustments */
+    .form-group {
+        flex-direction: column;
+    }
+    
+    .form-group .form-control {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    /* Footer adjustments */
+    .footer {
+        padding: 40px 0;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 576px) {
+    .container {
+        width: 95%;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* Reader profile mobile adjustments */
+    .reader-profile {
+        text-align: center;
+    }
+    
+    .reader-description {
+        text-align: center;
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+    
+    /* Header adjustments */
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    /* Hero section adjustments */
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    
+    /* Section adjustments */
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    /* Card adjustments */
+    .card {
+        width: 260px;
+        height: 380px;
+    }
+    
+    .card-meaning h3 {
+        font-size: 1.1rem;
+    }
+    
+    .keywords {
+        font-size: 0.8rem;
+    }
+    
+    /* Reading description adjustments */
+    .reading-description {
+        padding: 15px;
+    }
+    
+    .reading-description p {
+        font-size: 0.9rem;
+    }
+    
+    .reading-description li {
+        font-size: 0.9rem;
+    }
+    
+    /* Pricing adjustments */
+    .pricing-card {
+        padding: 15px;
+    }
+    
+    .pricing-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .price {
+        font-size: 1.8rem;
+    }
+    
+    /* Booking section adjustments */
+    .reading-type-card {
+        padding: 15px;
+    }
+    
+    .reading-type-card h4 {
+        font-size: 1.2rem;
+    }
+    
+    .whatsapp-button {
+        padding: 15px 25px;
+        font-size: 0.9rem;
+    }
+    
+    /* Social icon adjustments */
+    .social-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .social-icon i {
+        font-size: 1.4rem;
+    }
+}
+
+/* Ensure proper display on very small devices */
+@media screen and (max-width: 360px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .card {
+        width: 240px;
+        height: 360px;
+    }
+}

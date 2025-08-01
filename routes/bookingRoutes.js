@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { sendBookingConfirmation } = require('../utils/emailService');
 const Booking = require('../models/Booking');
-const { ObjectId } = require('mongodb');
 const logger = require('../utils/logger');
 
 // Create a new booking
@@ -77,41 +76,6 @@ router.post('/', async (req, res) => {
             });
         }
 
-        // Calculate end time based on reading type
-        const readingDetails = {
-            quick: { duration: 30 },
-            spiritual: { duration: 60 },
-            celestial: { duration: 90 }
-        };
-
-        const startTime = new Date(`${date}T${time}`);
-        const endTime = new Date(startTime.getTime() + readingDetails[readingType].duration * 60000);
-
-        // Check for overlapping bookings
-        const existingBooking = await Booking.findOne({
-            date,
-            $or: [
-                {
-                    time: {
-                        $gte: time,
-                        $lt: endTime.toTimeString().slice(0, 5)
-                    }
-                },
-                {
-                    endTime: {
-                        $gt: time,
-                        $lte: endTime.toTimeString().slice(0, 5)
-                    }
-                }
-            ]
-        });
-
-        if (existingBooking) {
-            return res.status(409).json({ 
-                message: 'This time slot is already booked. Please select another time' 
-            });
-        }
-
         // Create new booking
         const booking = new Booking({
             name,
@@ -122,30 +86,28 @@ router.post('/', async (req, res) => {
             readingType
         });
 
-        await booking.save();
+        const savedBooking = await booking.save();
 
         // Send confirmation email
         try {
-            await sendBookingConfirmation(booking);
+            await sendBookingConfirmation({
+                to: savedBooking.email,
+                subject: 'Your Tarot Reading Confirmation',
+                data: {
+                    name: savedBooking.name,
+                    date: savedBooking.date,
+                    time: savedBooking.time,
+                    readingType: savedBooking.readingName,
+                    duration: savedBooking.duration,
+                    price: savedBooking.price
+                }
+            });
         } catch (emailError) {
             logger.error('Error sending confirmation email:', emailError);
-            // Don't fail the booking if email fails
+            // Continue even if email fails
         }
 
-        res.status(201).json({
-            message: 'Booking confirmed',
-            booking: {
-                name: booking.name,
-                email: booking.email,
-                phone: booking.phone,
-                date: booking.date,
-                time: booking.time,
-                readingType: booking.readingName,
-                duration: booking.duration,
-                price: booking.price
-            }
-        });
-
+        res.status(201).json(savedBooking);
     } catch (error) {
         logger.error('Error creating booking:', error);
         res.status(500).json({ 
@@ -156,10 +118,12 @@ router.post('/', async (req, res) => {
 });
 
 // Get all bookings
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     try {
-        const bookings = await Booking.find().sort({ createdAt: -1 });
-        res.json(bookings);
+        const bookings = Booking.find();
+        // Sort by createdAt in descending order
+        const sortedBookings = bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        res.json(sortedBookings);
     } catch (error) {
         logger.error('Error fetching bookings:', error);
         res.status(500).json({ message: 'Error fetching bookings', error: error.message });
@@ -167,7 +131,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get available time slots for a date
-router.get('/available-slots/:date', async (req, res) => {
+router.get('/available-slots/:date', (req, res) => {
     try {
         const date = req.params.date;
         
@@ -177,10 +141,10 @@ router.get('/available-slots/:date', async (req, res) => {
         }
 
         // Get all bookings for the date
-        const existingBookings = await Booking.find({
+        const existingBookings = Booking.find({
             date,
             status: { $in: ['confirmed', 'pending'] }
-        }).select('time readingType');
+        });
 
         // Define available time slots (3 PM to 11 PM)
         const availableSlots = [];
@@ -204,8 +168,7 @@ router.get('/available-slots/:date', async (req, res) => {
             };
 
             const endTime = new Date(startTime.getTime() + readingDetails[booking.readingType].duration * 60000);
-            const endTimeStr = endTime.toTimeString().slice(0, 5);
-
+            
             // Mark all slots that are occupied
             for (let hour = startTime.getHours(); hour <= endTime.getHours(); hour++) {
                 for (let minute = 0; minute < 60; minute += 30) {
@@ -226,10 +189,10 @@ router.get('/available-slots/:date', async (req, res) => {
 });
 
 // Get a specific booking
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
     try {
         const { id } = req.params;
-        const booking = await Booking.findById(id);
+        const booking = Booking.findById(id);
         if (!booking) {
             return res.status(404).json({ message: 'Booking not found' });
         }
@@ -241,12 +204,12 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update a booking
-router.put('/:id', async (req, res) => {
+router.put('/:id', (req, res) => {
     try {
         const { id } = req.params;
         const update = req.body;
         
-        const booking = await Booking.findByIdAndUpdate(id, update, { new: true });
+        const booking = Booking.findByIdAndUpdate(id, update);
         if (!booking) {
             return res.status(404).json({ message: 'Booking not found' });
         }
@@ -259,10 +222,10 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete/Cancel a booking
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', (req, res) => {
     try {
         const { id } = req.params;
-        const booking = await Booking.findByIdAndDelete(id);
+        const booking = Booking.findByIdAndDelete(id);
         if (!booking) {
             return res.status(404).json({ message: 'Booking not found' });
         }

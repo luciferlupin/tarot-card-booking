@@ -1,5 +1,5 @@
 {
-  "name": "windsurf-project",
+  "name": "tarot-card-booking",
   "version": "1.0.0",
   "description": "Tarot reading booking platform",
   "main": "server.js",
@@ -18,7 +18,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongoose": "^7.0.3",
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.22",
     "winston": "^3.17.0"

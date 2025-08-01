@@ -1,0 +1,71 @@
+/* Reading Message Styles */
+.reading-message {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(26, 11, 46, 0.9);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(155, 109, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.reading-message h3 {
+    color: var(--accent-1);
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(155, 109, 255, 0.5);
+}
+
+.reading-message ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reading-message li {
+    padding: 15px;
+    margin: 10px 0;
+    background: rgba(155, 109, 255, 0.1);
+    border-left: 3px solid var(--accent-1);
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+/* Complete Reading Section */
+.reading-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease;
+}
+
+.reading-message {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.complete-reading {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(155, 109, 255, 0.15);
+    border-radius: 10px;
+    border: 1px solid rgba(155, 109, 255, 0.5);
+}
+
+.complete-reading h3 {
+    color: #f5c156;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    text-shadow: 0 0 10px rgba(245, 193, 86, 0.5);
+}
+
+.complete-reading p {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-size: 1.15em;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

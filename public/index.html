@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mystic Tarot Reading</title>
+    <title>Starlight Tarot Reading</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="social-icons.css">
+    <link rel="stylesheet" href="reading-message.css">
+    <link rel="stylesheet" href="reading-description.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="mobile-menu.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="mystical-particles"></div>
@@ -30,14 +37,14 @@
         <div class="container">
             <div class="logo">
                 <span class="crystal-icon">✧</span>
-                Mystic Tarot
+                Starlight Tarot
                 <span class="crystal-icon">✧</span>
             </div>
             <button class="mobile-menu-btn">☰</button>
             <nav>
                 <a href="#home" class="active">Home</a>
                 <a href="#about">About</a>
-                <a href="#readings">Reading</a>
+                <a href="#services">Services</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#appointment">Book Session</a>
             </nav>
@@ -47,6 +54,17 @@
     <main>
         <section id="home" class="hero-section">
             <div class="mystical-overlay"></div>
+            <div class="tarot-props">
+                <div class="tarot-card-prop card-1">🎴</div>
+                <div class="tarot-card-prop card-2">🔮</div>
+                <div class="tarot-card-prop card-3">✨</div>
+                <div class="tarot-card-prop card-4">🌙</div>
+                <div class="tarot-card-prop card-5">⭐</div>
+                <div class="tarot-card-prop card-6">🌟</div>
+                <div class="crystal-ball">🔮</div>
+                <div class="candle">🕯️</div>
+                <div class="pentagram">✴️</div>
+            </div>
             <div class="container">
                 <div class="hero-content">
                     <h1 class="animate-text">Journey Into The Mystical Realm</h1>
@@ -56,8 +74,15 @@
                         <div class="tarot-card">🎴</div>
                         <div class="tarot-card">🎴</div>
                     </div>
+                    <div class="hero-cta">
+                        <a href="#appointment" class="cta-button">
+                            <span class="cta-text">Book Your Reading</span>
+                            <span class="cta-icon">✧</span>
+                        </a>
+                    </div>
                 </div>
             </div>
+            <div class="mystical-dust"></div>
         </section>
 
         <section id="about" class="about-section">
@@ -66,11 +91,25 @@
                     <div class="mystical-quote">
                         <p>"The cards tell a story, but your spirit writes the ending"</p>
                     </div>
+                    
+                    <div class="about-bio">
+                        <h2>About Me</h2>
+                        <div class="reader-profile">
+                            <div class="reader-description">
+                                <p>Hi, I'm Purvika Goenka, a dedicated tarot reader, numerologist and graphologist, trained in helping people find clarity and direction. For me, tarot cards are not just tools—they are trusted friends, always ready to offer wisdom and guidance. And just as they speak to me, they can speak to you too. I am merely a medium, here to help you understand their messages and apply them to your life in a meaningful way.</p>
+                                
+                                <p>My approach to tarot is deeply practical. I believe that a reading should be more than just mystical words—it should provide real insights that resonate with your everyday experiences. Whether you're seeking clarity in love, career, or personal growth, my goal is to empower you with actionable wisdom that helps you navigate life with confidence.</p>
+                                
+                                <p>Let's unlock the messages the cards have for you—together.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="about-grid">
                         <div class="about-card fade-in">
                             <span class="crystal-icon">✧</span>
-                            <h3>Ancient Wisdom</h3>
-                            <p>Drawing from centuries of mystical knowledge to guide your journey</p>
+                            <h3>Love & Relationships</h3>
+                            <p>Gain clarity on your relationships and romantic future</p>
                         </div>
                         <div class="about-card fade-in">
                             <span class="crystal-icon">✧</span>
@@ -87,213 +126,530 @@
             </div>
         </section>
 
-        <section id="readings" class="readings-section">
+        <section id="services" class="services-section">
             <div class="mystical-overlay"></div>
             <div class="container">
-                <h2 class="section-title glow-text">Mystical Readings</h2>
-                <div class="reading-cards">
-                    <div class="reading-card fade-in">
+                <h2 class="section-title glow-text">Services Offered</h2>
+                <div class="service-cards">
+                    <div class="service-card fade-in" data-service="relationship">
                         <div class="card-crystal">✧</div>
-                        <h3>Past Life Reading</h3>
-                        <p>Uncover the mysteries of your soul's journey through time</p>
+                        <h3>Relationship Reading</h3>
+                        <p>Gain clarity and guidance for your relationships</p>
                     </div>
-                    <div class="reading-card fade-in">
+                    <div class="service-card fade-in" data-service="career">
                         <div class="card-crystal">✧</div>
-                        <h3>Love & Relationships</h3>
-                        <p>Navigate the intricate paths of heart and soul connections</p>
+                        <h3>Career Reading</h3>
+                        <p>Navigate your professional path with cosmic wisdom</p>
                     </div>
-                    <div class="reading-card fade-in">
+                    <div class="service-card fade-in" data-service="health">
                         <div class="card-crystal">✧</div>
-                        <h3>Career Guidance</h3>
-                        <p>Illuminate your professional path with cosmic wisdom</p>
+                        <h3>Health Reading</h3>
+                        <p>Understand the energy surrounding your well-being</p>
+                    </div>
+                    <div class="service-card fade-in" data-service="lifepath">
+                        <div class="card-crystal">✧</div>
+                        <h3>Life Path Reading</h3>
+                        <p>Discover your true calling and purpose</p>
+                    </div>
+                    <div class="service-card fade-in" data-service="numerology">
+                        <div class="card-crystal">✧</div>
+                        <h3>Numerology & Astrology</h3>
+                        <p>Unlock the power of numbers and stars</p>
+                    </div>
+                    <div class="service-card fade-in" data-service="courses">
+                        <div class="card-crystal">✧</div>
+                        <h3>Tarot Courses</h3>
+                        <p>Learn the art of tarot reading</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="three-card-reading" class="cards-section">
-            <div class="section-content">
-                <h2>Three Card Reading</h2>
-                <div class="reading-description">
-                    <p>The three-card reading is one of the most popular and insightful tarot spreads. Each card position represents a different aspect of your journey:</p>
-                    <ul>
-                        <li><strong>Past:</strong> Reflects past influences and experiences that have shaped your current situation</li>
-                        <li><strong>Present:</strong> Represents your current energy and circumstances</li>
-                        <li><strong>Future:</strong> Offers guidance and potential outcomes based on your current path</li>
-                    </ul>
-                    <p>Click each card to reveal its meaning. When all three cards are revealed, you'll receive a comprehensive reading.</p>
+        <!-- Service Popup Modal -->
+        <div class="service-modal" id="serviceModal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="modal-body">
+                    <!-- Content will be dynamically inserted here -->
                 </div>
-                <div class="card-deck">
-                    <div class="card-position">
-                        <p class="position-label">Past</p>
-                        <div class="card" data-card="fool" onclick="flipCard(this)">
-                            <div class="card-inner">
-                                <div class="card-front">
-                                    <div class="card-design">
-                                        <div class="card-symbol"></div>
-                                        <div class="card-pattern"></div>
-                                        <p>Past Influences</p>
-                                        <div class="card-symbol"></div>
-                                    </div>
-                                </div>
-                                <div class="card-back">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg" alt="The Fool">
-                                    <div class="card-meaning">
-                                        <h3>The Fool</h3>
-                                        <p class="keywords">New beginnings • Spontaneity • Faith</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-position">
-                        <p class="position-label">Present</p>
-                        <div class="card" data-card="magician" onclick="flipCard(this)">
-                            <div class="card-inner">
-                                <div class="card-front">
-                                    <div class="card-design">
-                                        <div class="card-symbol"></div>
-                                        <div class="card-pattern"></div>
-                                        <p>Current Energy</p>
-                                        <div class="card-symbol"></div>
-                                    </div>
-                                </div>
-                                <div class="card-back">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg" alt="The Magician">
-                                    <div class="card-meaning">
-                                        <h3>The Magician</h3>
-                                        <p class="keywords">Manifestation • Power • Action</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-position">
-                        <p class="position-label">Future</p>
-                        <div class="card" data-card="priestess" onclick="flipCard(this)">
-                            <div class="card-inner">
-                                <div class="card-front">
-                                    <div class="card-design">
-                                        <div class="card-symbol"></div>
-                                        <div class="card-pattern"></div>
-                                        <p>Future Path</p>
-                                        <div class="card-symbol"></div>
-                                    </div>
-                                </div>
-                                <div class="card-back">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg" alt="The High Priestess">
-                                    <div class="card-meaning">
-                                        <h3>The High Priestess</h3>
-                                        <p class="keywords">Intuition • Mystery • Inner voice</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="reading-message" class="reading-message"></div>
             </div>
-        </section>
+        </div>
+
+        <!-- Hidden Service Details -->
+        <div class="service-details" style="display: none;">
+            <!-- Relationship Reading -->
+            <div id="relationship-details">
+                <h2>Relationship Reading</h2>
+                <div class="service-icon">❤️</div>
+                <p>Confused about your relationships? Uncover your partner's true feelings, intentions, and any external influences affecting your relationship. My readings provide clarity, guidance, and predictions to help you navigate challenges, strengthen your bond, and make informed choices for a fulfilling love life.</p>
+                <div class="service-benefits">
+                    <h3>Benefits:</h3>
+                    <ul>
+                        <li>Understand your partner's true feelings</li>
+                        <li>Identify relationship patterns</li>
+                        <li>Navigate challenges with clarity</li>
+                        <li>Make informed decisions about your love life</li>
+                    </ul>
+                </div>
+                <a href="#appointment" class="book-now-btn">Book This Service</a>
+            </div>
+            
+            <!-- Career Reading -->
+            <div id="career-details">
+                <h2>Career Reading</h2>
+                <div class="service-icon">💼</div>
+                <p>Confused about your career path? My tarot readings provide practical guidance on job opportunities, business decisions, and professional growth. Whether you're considering a change or looking for stability, the cards reveal the best course of action for your success.</p>
+                <div class="service-benefits">
+                    <h3>Benefits:</h3>
+                    <ul>
+                        <li>Identify your ideal career path</li>
+                        <li>Gain clarity on business decisions</li>
+                        <li>Discover opportunities for growth</li>
+                        <li>Overcome professional challenges</li>
+                    </ul>
+                </div>
+                <a href="#appointment" class="book-now-btn">Book This Service</a>
+            </div>
+            
+            <!-- Health Reading -->
+            <div id="health-details">
+                <h2>Health Reading</h2>
+                <div class="service-icon">✨</div>
+                <p>Understand the energy surrounding your well-being. While tarot doesn't replace medical advice, it can provide insight into emotional and spiritual factors influencing your health, helping you focus on self-care, healing, and balance in your life.</p>
+                <div class="service-benefits">
+                    <h3>Benefits:</h3>
+                    <ul>
+                        <li>Identify energetic blockages affecting health</li>
+                        <li>Discover emotional patterns influencing well-being</li>
+                        <li>Receive guidance for holistic self-care</li>
+                        <li>Find balance in mind, body, and spirit</li>
+                    </ul>
+                </div>
+                <a href="#appointment" class="book-now-btn">Book This Service</a>
+            </div>
+            
+            <!-- Life Path Reading -->
+            <div id="lifepath-details">
+                <h2>Life Path Reading</h2>
+                <div class="service-icon">🌟</div>
+                <p>Discover your true calling and purpose. A life path reading helps you align with your strengths, overcome obstacles, and gain clarity about your spiritual and personal journey. Let the cards guide you toward a fulfilling and meaningful life.</p>
+                <div class="service-benefits">
+                    <h3>Benefits:</h3>
+                    <ul>
+                        <li>Discover your life purpose and mission</li>
+                        <li>Identify your natural talents and gifts</li>
+                        <li>Overcome obstacles on your path</li>
+                        <li>Align with your authentic self</li>
+                    </ul>
+                </div>
+                <a href="#appointment" class="book-now-btn">Book This Service</a>
+            </div>
+            
+            <!-- Numerology & Astrology -->
+            <div id="numerology-details">
+                <h2>Numerology & Astrology Reports</h2>
+                <div class="service-icon">🔮</div>
+                <p>Unlock the power of numbers and stars! Numerology and astrology provide deep insights into your personality, destiny, and life cycles. These reports help you understand cosmic influences and how to harness them for growth, success, and harmony.</p>
+                <div class="service-benefits">
+                    <h3>Benefits:</h3>
+                    <ul>
+                        <li>Understand your life path number and its significance</li>
+                        <li>Discover your astrological influences</li>
+                        <li>Learn about favorable timing for important decisions</li>
+                        <li>Gain insight into your personal strengths and challenges</li>
+                    </ul>
+                </div>
+                <a href="#appointment" class="book-now-btn">Book This Service</a>
+            </div>
+            
+            <!-- Tarot Courses -->
+            <div id="courses-details">
+                <h2>Tarot Courses</h2>
+                <div class="service-icon">📚</div>
+                <p>Learn the art of tarot reading with my structured courses. Whether you're a beginner or looking to deepen your knowledge, my courses cover card meanings, intuitive reading techniques, and practical applications—helping you build confidence in your tarot practice.</p>
+                <div class="service-benefits">
+                    <h3>Course Includes:</h3>
+                    <ul>
+                        <li>Comprehensive card meanings and symbolism</li>
+                        <li>Intuitive reading techniques</li>
+                        <li>Spread creation and interpretation</li>
+                        <li>Practical exercises and personalized feedback</li>
+                    </ul>
+                </div>
+                <a href="#appointment" class="book-now-btn">Enroll Now</a>
+            </div>
+        </div>
 
         <section id="pricing" class="pricing-section">
             <div class="container">
-                <h2 class="section-title">Journey Pricing</h2>
+                <h2 class="section-title">Pricing Plans</h2>
                 <p class="section-subtitle">Choose Your Mystical Path</p>
                 
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Quick Insight</h3>
-                            <div class="price">₹300</div>
-                            <p class="duration">15 Minutes</p>
+                <div class="pricing-category">
+                    <h3 class="category-title">📞 Telephonic Readings</h3>
+                    
+                    <div class="pricing-subcategory">
+                        <h4 class="subcategory-title">Question-Based Readings</h4>
+                        <p class="subcategory-desc">Quick & Crisp answers with remedies</p>
+                        
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3>3 Questions</h3>
+                                    <div class="price">₹666</div>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li>✧ Three specific questions</li>
+                                        <li>✧ Crisp, clear answers</li>
+                                        <li>✧ Personalized remedies</li>
+                                        <li>✧ Email summary</li>
+                                    </ul>
+                                </div>
+                                <a href="#appointment" class="book-now-btn">Book Now</a>
+                            </div>
+                            
+                            <div class="pricing-card featured">
+                                <div class="pricing-header">
+                                    <h3>5 Questions</h3>
+                                    <div class="price">₹777</div>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li>✧ Five specific questions</li>
+                                        <li>✧ Detailed insights</li>
+                                        <li>✧ Personalized remedies</li>
+                                        <li>✧ Priority scheduling</li>
+                                        <li>✧ Email summary</li>
+                                    </ul>
+                                </div>
+                                <a href="#appointment" class="book-now-btn">Book Now</a>
+                            </div>
+                            
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3>7 Questions</h3>
+                                    <div class="price">₹999</div>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li>✧ Seven specific questions</li>
+                                        <li>✧ In-depth analysis</li>
+                                        <li>✧ Comprehensive remedies</li>
+                                        <li>✧ Priority scheduling</li>
+                                        <li>✧ Detailed email report</li>
+                                    </ul>
+                                </div>
+                                <a href="#appointment" class="book-now-btn">Book Now</a>
+                            </div>
                         </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li>✧ Quick Tarot Reading</li>
-                                <li>✧ One Specific Question</li>
-                                <li>✧ Basic Guidance</li>
-                                <li>✧ Email Summary</li>
-                            </ul>
-                        </div>
-                        <a href="#booking" class="book-now-btn">Begin Journey</a>
                     </div>
-
-                    <div class="pricing-card featured">
-                        <div class="pricing-header">
-                            <h3>Spiritual Path</h3>
-                            <div class="price">₹500</div>
-                            <p class="duration">30 Minutes</p>
+                    
+                    <div class="pricing-subcategory">
+                        <h4 class="subcategory-title">Time-Based Readings</h4>
+                        <p class="subcategory-desc">Unlimited questions with detailed answers & remedies</p>
+                        
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3>15 Minutes</h3>
+                                    <div class="price">₹555</div>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li>✧ Unlimited questions</li>
+                                        <li>✧ Quick insights</li>
+                                        <li>✧ Basic remedies</li>
+                                        <li>✧ Email summary</li>
+                                    </ul>
+                                </div>
+                                <a href="#appointment" class="book-now-btn">Book Now</a>
+                            </div>
+                            
+                            <div class="pricing-card featured">
+                                <div class="pricing-header">
+                                    <h3>30 Minutes</h3>
+                                    <div class="price">₹999</div>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li>✧ Unlimited questions</li>
+                                        <li>✧ Detailed insights</li>
+                                        <li>✧ Personalized remedies</li>
+                                        <li>✧ Priority scheduling</li>
+                                        <li>✧ Email summary</li>
+                                    </ul>
+                                </div>
+                                <a href="#appointment" class="book-now-btn">Book Now</a>
+                            </div>
+                            
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3>1 Hour</h3>
+                                    <div class="price">₹1499</div>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li>✧ Unlimited questions</li>
+                                        <li>✧ Comprehensive analysis</li>
+                                        <li>✧ In-depth remedies</li>
+                                        <li>✧ Priority scheduling</li>
+                                        <li>✧ Detailed email report</li>
+                                    </ul>
+                                </div>
+                                <a href="#appointment" class="book-now-btn">Book Now</a>
+                            </div>
                         </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li>✧ Detailed Tarot Reading</li>
-                                <li>✧ Multiple Questions</li>
-                                <li>✧ Spiritual Guidance</li>
-                                <li>✧ Personal Growth Insights</li>
-                                <li>✧ Detailed Email Report</li>
-                            </ul>
-                        </div>
-                        <a href="#booking" class="book-now-btn">Begin Journey</a>
                     </div>
-
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Celestial Journey</h3>
-                            <div class="price">₹700</div>
-                            <p class="duration">60 Minutes</p>
+                </div>
+                
+                <div class="pricing-category">
+                    <h3 class="category-title">📜 Detailed Reports (PDF Format)</h3>
+                    
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Numerology Report</h3>
+                                <div class="price">₹1599</div>
+                            </div>
+                            <div class="pricing-features">
+                                <ul>
+                                    <li>✧ How your numbers work</li>
+                                    <li>✧ Personalized remedies</li>
+                                    <li>✧ Life path analysis</li>
+                                    <li>✧ Future predictions</li>
+                                    <li>✧ PDF format</li>
+                                </ul>
+                            </div>
+                            <a href="#appointment" class="book-now-btn">Order Now</a>
                         </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li>✧ Comprehensive Reading</li>
-                                <li>✧ Past, Present & Future</li>
-                                <li>✧ Deep Life Analysis</li>
-                                <li>✧ Career & Relationship Insights</li>
-                                <li>✧ Personalized Action Plan</li>
-                                <li>✧ Video Recording</li>
-                            </ul>
+                        
+                        <div class="pricing-card featured">
+                            <div class="pricing-header">
+                                <h3>Astro-Kundli Report</h3>
+                                <div class="price">₹1999</div>
+                            </div>
+                            <div class="pricing-features">
+                                <ul>
+                                    <li>✧ How planets affect your life</li>
+                                    <li>✧ Personalized remedies</li>
+                                    <li>✧ Detailed planetary analysis</li>
+                                    <li>✧ Future predictions</li>
+                                    <li>✧ PDF format</li>
+                                </ul>
+                            </div>
+                            <a href="#appointment" class="book-now-btn">Order Now</a>
                         </div>
-                        <a href="#booking" class="book-now-btn">Begin Journey</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-category">
+                    <h3 class="category-title">💬 Text-Based Readings</h3>
+                    <p class="subcategory-desc">Quick answers, no remedies provided</p>
+                    
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>3 Questions</h3>
+                                <div class="price">₹333</div>
+                            </div>
+                            <div class="pricing-features">
+                                <ul>
+                                    <li>✧ Three specific questions</li>
+                                    <li>✧ Text-based responses</li>
+                                    <li>✧ Quick turnaround</li>
+                                    <li>✧ No remedies included</li>
+                                </ul>
+                            </div>
+                            <a href="#appointment" class="book-now-btn">Book Now</a>
+                        </div>
+                        
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>5 Questions</h3>
+                                <div class="price">₹444</div>
+                            </div>
+                            <div class="pricing-features">
+                                <ul>
+                                    <li>✧ Five specific questions</li>
+                                    <li>✧ Text-based responses</li>
+                                    <li>✧ Quick turnaround</li>
+                                    <li>✧ No remedies included</li>
+                                </ul>
+                            </div>
+                            <a href="#appointment" class="book-now-btn">Book Now</a>
+                        </div>
+                        
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>7 Questions</h3>
+                                <div class="price">₹666</div>
+                            </div>
+                            <div class="pricing-features">
+                                <ul>
+                                    <li>✧ Seven specific questions</li>
+                                    <li>✧ Text-based responses</li>
+                                    <li>✧ Quick turnaround</li>
+                                    <li>✧ No remedies included</li>
+                                </ul>
+                            </div>
+                            <a href="#appointment" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pricing-category">
+                    <h3 class="category-title">🧠 Tarot Courses</h3>
+                    
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Beginner Course</h3>
+                            </div>
+                            <div class="pricing-features">
+                                <ul>
+                                    <li>✧ Tarot basics</li>
+                                    <li>✧ Card meanings</li>
+                                    <li>✧ Simple spreads</li>
+                                    <li>✧ Practice readings</li>
+                                    <li>✧ Certificate of completion</li>
+                                </ul>
+                            </div>
+                            <a href="#appointment" class="book-now-btn">Inquire Now</a>
+                        </div>
+                        
+                        <div class="pricing-card featured">
+                            <div class="pricing-header">
+                                <h3>Advanced Course</h3>
+                            </div>
+                            <div class="pricing-features">
+                                <ul>
+                                    <li>✧ Advanced techniques</li>
+                                    <li>✧ Complex spreads</li>
+                                    <li>✧ Intuitive reading</li>
+                                    <li>✧ Client interaction skills</li>
+                                    <li>✧ Business setup guidance</li>
+                                    <li>✧ Professional certification</li>
+                                </ul>
+                            </div>
+                            <a href="#appointment" class="book-now-btn">Inquire Now</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="appointment" class="appointment-section">
-            <div class="section-content">
-                <h2>✨ Schedule Your Mystical Reading ✨</h2>
+            <div class="container">
+                <h2 class="section-title">Book Your Session</h2>
+                <p class="section-subtitle">Unlock the secrets of your destiny through ancient tarot wisdom and cosmic guidance</p>
                 
-                <div class="booking-container">
-                    <!-- Direct WhatsApp Booking -->
-                    <div class="whatsapp-booking-container">
-                        <div class="whatsapp-info">
-                            <h3>Book Your Session Directly via WhatsApp</h3>
-                            <p>For a personalized tarot reading experience, connect with us directly through WhatsApp. Our mystic reader will respond to your inquiry promptly to arrange a time that works for you.</p>
-                            
-                            <h4 class="reading-options-title">Select Your Reading Type</h4>
+                <div class="whatsapp-booking-container">
+                    <div class="whatsapp-info">
+                        <h3>Explore Our Tarot Services</h3>
+                        <p class="booking-instructions">Browse our offerings below and connect via WhatsApp to schedule your personalized reading</p>
+                    </div>
+                    
+                    <div class="reading-categories">
+                        <div class="reading-category">
+                            <h4 class="reading-options-title">Telephonic Readings</h4>
                             <div class="reading-type-options">
-                                <div class="reading-type-card">
-                                    <h3>Celestial Journey</h3>
-                                    <p>90 minutes • ₹700</p>
-                                    <p>Deep dive into your soul's journey with a comprehensive reading covering past, present, and future</p>
+                                <div class="reading-type-card" data-service="telephonic-questions">
+                                    <h3>Question-Based Reading</h3>
+                                    <p>Get answers to your specific questions</p>
+                                    <div class="price-options">
+                                        <p>3 Questions – ₹666</p>
+                                        <p>5 Questions – ₹777</p>
+                                        <p>7 Questions – ₹999</p>
+                                    </div>
                                 </div>
-                                <div class="reading-type-card">
-                                    <h3>Spiritual Guidance</h3>
-                                    <p>60 minutes • ₹500</p>
-                                    <p>Find your spiritual path with focused insights on your current life situation</p>
-                                </div>
-                                <div class="reading-type-card">
-                                    <h3>Crystal Clear Insight</h3>
-                                    <p>30 minutes • ₹300</p>
-                                    <p>Quick answers to your specific questions for immediate clarity</p>
+                                
+                                <div class="reading-type-card" data-service="telephonic-time">
+                                    <h3>Time-Based Reading</h3>
+                                    <p>In-depth consultation for multiple areas of life</p>
+                                    <div class="price-options">
+                                        <p>15 Minutes – ₹555</p>
+                                        <p>30 Minutes – ₹999</p>
+                                        <p>1 Hour – ₹1499</p>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <p class="booking-instructions">Click on your preferred reading type above, then use the WhatsApp button below to send your booking request.</p>
                         </div>
                         
-                        <a href="https://wa.me/918595121436?text=Hello,%20I%20would%20like%20to%20book%20a%20tarot%20reading%20session." class="whatsapp-button">
-                            <i class="fab fa-whatsapp"></i> Book via WhatsApp
+                        <div class="reading-category">
+                            <h4 class="reading-options-title">Text-Based Readings</h4>
+                            <div class="reading-type-options">
+                                <div class="reading-type-card" data-service="text-questions">
+                                    <h3>Question-Based Reading</h3>
+                                    <p>Get answers to your specific questions</p>
+                                    <div class="price-options">
+                                        <p>3 Questions – ₹555</p>
+                                        <p>5 Questions – ₹666</p>
+                                        <p>7 Questions – ₹888</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="reading-type-card" data-service="text-spread">
+                                    <h3>Tarot Spread Reading</h3>
+                                    <p>Detailed interpretation of tarot spreads</p>
+                                    <div class="price-options">
+                                        <p>3-Card Spread – ₹444</p>
+                                        <p>5-Card Spread – ₹666</p>
+                                        <p>Celtic Cross – ₹2999</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="reading-category">
+                            <h4 class="reading-options-title">Detailed Reports</h4>
+                            <div class="reading-type-options">
+                                <div class="reading-type-card" data-service="detailed-reports">
+                                    <h3>Numerology Report</h3>
+                                    <p>Comprehensive PDF report with personalized analysis</p>
+                                    <div class="price-options">
+                                        <p>Detailed analysis – ₹1599</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="reading-type-card" data-service="detailed-reports">
+                                    <h3>Astro-Kundli Report</h3>
+                                    <p>Comprehensive PDF report with astrological insights</p>
+                                    <div class="price-options">
+                                        <p>Detailed analysis – ₹1999</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="reading-category">
+                            <h4 class="reading-options-title">Tarot Courses</h4>
+                            <div class="reading-type-options">
+                                <div class="reading-type-card" data-service="tarot-courses">
+                                    <h3>Beginner's Course</h3>
+                                    <p>Learn the basics of tarot reading with personalized guidance</p>
+                                    <div class="price-options">
+                                        <p>Contact for pricing details</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="reading-type-card" data-service="tarot-courses">
+                                    <h3>Advanced Course</h3>
+                                    <p>Master complex spreads and interpretations with expert training</p>
+                                    <div class="price-options">
+                                        <p>Contact for pricing details</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-action">
+                        <a href="https://wa.me/+919211370852?text=I%20would%20like%20to%20book%20a%20tarot%20reading%20session" class="whatsapp-button" id="whatsappButton">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Book Your Session Now</span>
                         </a>
+                        <p class="booking-note">Click the button above to connect directly with our tarot reader</p>
                     </div>
                 </div>
             </div>
@@ -303,25 +659,22 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="social-links">
-                <a href="#" class="social-icon" id="instagram-link">
+                <a href="https://www.instagram.com/starlighttarot222?igsh=MTl6b2ptbDhybGRxZQ==" class="social-icon" id="instagram-link" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="#" class="social-icon" id="facebook-link">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="#" class="social-icon" id="twitter-link">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-icon" id="pinterest-link">
-                    <i class="fab fa-pinterest"></i>
+                <a href="#" class="social-icon" id="facebook-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
                 </a>
             </div>
-            <p>&copy; 2024 Mystic Tarot Reading. All rights reserved.</p>
+            <p>&copy; 2025 Starlight Tarot Reading. All rights reserved.</p>
             <p class="design-credit">Design by <a href="https://curiouskaizer.com" target="_blank" rel="noopener noreferrer">Curious Kaizer</a></p>
+>>>>>>> c88ad65cc440f7817ca40424881f4465309fe14b
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="script.js"></script>
+    <script src="animations.js"></script>
+    <script src="mobile-menu.js"></script>
 </body>
 </html>

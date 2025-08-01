@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const sendBookingConfirmation = async (booking) => {
+const sendBookingConfirmation = async ({ to, subject, data }) => {
     const readingTypes = {
         celestial: {
             name: 'Celestial Journey',
@@ -26,10 +26,8 @@ const sendBookingConfirmation = async (booking) => {
             price: '₹300'
         }
     };
-
-    const reading = readingTypes[booking.readingType];
     
-    const dateObj = new Date(booking.date);
+    const dateObj = new Date(data.date);
     const formattedDate = dateObj.toLocaleDateString('en-US', {
         weekday: 'long',
         year: 'numeric',
@@ -37,7 +35,7 @@ const sendBookingConfirmation = async (booking) => {
         day: 'numeric'
     });
 
-    const timeObj = new Date(`2000-01-01T${booking.time}`);
+    const timeObj = new Date(`2000-01-01T${data.time}`);
     const formattedTime = timeObj.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: '2-digit'
@@ -47,15 +45,15 @@ const sendBookingConfirmation = async (booking) => {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #2c1810;">
             <h1 style="color: #8a4d76; text-align: center;">✨ Your Mystical Journey Awaits ✨</h1>
             
-            <p>Dear ${booking.name},</p>
+            <p>Dear ${data.name},</p>
             
-            <p>Thank you for booking your ${reading.name} session. The stars have aligned for our meeting.</p>
+            <p>Thank you for booking your ${data.readingType} session. The stars have aligned for our meeting.</p>
             
             <div style="background: #f5f0f7; padding: 20px; border-radius: 10px; margin: 20px 0;">
                 <h2 style="color: #8a4d76; margin-top: 0;">Your Session Details</h2>
-                <p><strong>Reading Type:</strong> ${reading.name}</p>
-                <p><strong>Duration:</strong> ${reading.duration}</p>
-                <p><strong>Price:</strong> ${reading.price}</p>
+                <p><strong>Reading Type:</strong> ${data.readingType}</p>
+                <p><strong>Duration:</strong> ${data.duration} minutes</p>
+                <p><strong>Price:</strong> ₹${data.price}</p>
                 <p><strong>Date:</strong> ${formattedDate}</p>
                 <p><strong>Time:</strong> ${formattedTime}</p>
             </div>
@@ -78,8 +76,8 @@ const sendBookingConfirmation = async (booking) => {
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: booking.email,
-        subject: '✨ Your Tarot Reading Confirmation ✨',
+        to: to,
+        subject: subject || '✨ Your Tarot Reading Confirmation ✨',
         html: emailTemplate
     };
 
